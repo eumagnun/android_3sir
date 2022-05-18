@@ -4,4 +4,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="jogo_do_milh_o">Jogo do Milhão</string>
     <string name="jogar">Jogar</string>
+    <string name="nome_jogador">Nome jogador</string>
+    <string name="digite_seu_nome">Digite seu nome</string>
 </resources>

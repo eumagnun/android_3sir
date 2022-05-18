@@ -8,9 +8,13 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import br.com.danielamaral.jogo_do_milhao.databinding.FragmentJogoBinding
+import br.com.danielamaral.jogo_do_milhao.model.Pergunta
 import br.com.danielamaral.show_do_milhao.Database
 
 class JogoFragment : Fragment() {
+
+
+    private lateinit var perguntaSelecionada: Pergunta
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -19,11 +23,11 @@ class JogoFragment : Fragment() {
         val binding: FragmentJogoBinding = DataBindingUtil
             .inflate(inflater, R.layout.fragment_jogo, container, false)
 
-        binding.tvPergunta.text = Database.perguntas[0].texto
-        binding.rbResposta1.text = Database.perguntas[0].respostas[0].texto
-        binding.rbResposta2.text = Database.perguntas[0].respostas[1].texto
-        binding.rbResposta3.text = Database.perguntas[0].respostas[2].texto
-
+        perguntaSelecionada = selecionarPergunta()
+        binding.tvPergunta.text  = perguntaSelecionada.texto
+        binding.rbResposta1.text = perguntaSelecionada.respostas[0].texto
+        binding.rbResposta2.text = perguntaSelecionada.respostas[1].texto
+        binding.rbResposta3.text = perguntaSelecionada.respostas[2].texto
 
         binding.btResponder.setOnClickListener {
 
@@ -49,11 +53,18 @@ class JogoFragment : Fragment() {
     private fun validarResposta(respostaSelecionada: String): Boolean {
         var isRespostaCorreta = false
 
-        Database.perguntas[0].respostas.forEach { resposta ->
+        perguntaSelecionada.respostas.forEach { resposta ->
             if (respostaSelecionada.equals(resposta.texto) && resposta.isCorreta) {
                 isRespostaCorreta = true
             }
         }
         return isRespostaCorreta
+    }
+
+    private fun selecionarPergunta(): Pergunta {
+        Database.perguntas.shuffle()
+        val pergunta = Database.perguntas[0]
+        pergunta.respostas = pergunta.respostas.shuffled()
+        return pergunta
     }
 }

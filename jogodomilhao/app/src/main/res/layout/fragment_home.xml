@@ -33,18 +33,29 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
+        <EditText
+            android:id="@+id/etNomeJogador"
+            android:layout_width="300dp"
+            android:layout_marginTop="10sp"
+            android:layout_height="wrap_content"
+            android:hint="@string/digite_seu_nome"
+            android:gravity="center_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivLogo"/>
         <Button
             android:id="@+id/btJogar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20sp"
+            android:layout_marginTop="10sp"
             android:backgroundTint="#FB1717"
             android:text="@string/jogar"
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivLogo" />
+            app:layout_constraintTop_toBottomOf="@id/etNomeJogador" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
